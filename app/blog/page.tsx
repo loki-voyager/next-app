@@ -25,8 +25,8 @@ export default function Blog() {
       <div>
         <h1>Blog page</h1>
       </div>
-      <PostSearch onSearch={setPosts} />
-      {loading ? <h3>Loading...</h3> : <Posts posts={posts} />}
+      <PostSearch />
+      <Posts />
     </div>
   );
 }

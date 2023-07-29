@@ -2,12 +2,14 @@
 
 import { getPostsBySearch } from "@/services/getPosts";
 import { FormEventHandler, useState } from "react";
+import useSWR from "swr";
 
 type Props = {
   onSearch: (value: any[]) => void;
 };
 
-const PostSearch = ({ onSearch }: Props) => {
+const PostSearch = () => {
+  const { mutate } = useSWR("posts");
   const [search, setSearch] = useState("");
 
   const hadlerSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
@@ -15,7 +17,7 @@ const PostSearch = ({ onSearch }: Props) => {
 
     const posts = await getPostsBySearch(search);
 
-    onSearch(posts)
+    mutate(posts);
   };
 
   return (

@@ -1,11 +1,12 @@
+import { getAllPosts } from "@/services/getPosts";
 import Link from "next/link";
+import useSWR from "swr";
 
-type Props = {
-  posts: any[];
-};
-
-const Posts = ({ posts }: Props) => {
-  return (
+const Posts = () => {
+  const { data: posts, isLoading } = useSWR("posts", getAllPosts);
+  return isLoading ? (
+    <h3>Loading...</h3>
+  ) : (
     <ul className="list-col">
       {posts.map((post: any) => (
         <Link href={`/blog/${post.id}`} key={post.id} className="button">
