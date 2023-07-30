@@ -1,3 +1,5 @@
+"use client";
+
 import { getAllPosts } from "@/services/getPosts";
 import Link from "next/link";
 import useSWR from "swr";
